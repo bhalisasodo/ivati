@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface HeroProps {
@@ -78,6 +79,19 @@ export default function Hero({
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-24 px-6 lg:px-12 bg-white overflow-hidden select-none">
+      {/* Hero Background Image with Atmospheric Gradient Masking */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="IVATI Pure Water Background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-40 sm:opacity-50 scale-105 transition-transform duration-1000 ease-out"
+        />
+        {/* Subtle radial & linear gradient overlays for seamless text contrast and smooth blend into content */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/50 to-white" />
+      </div>
       {/* Background Interactive Liquid Glass Caustics Canvas */}
       <canvas
         ref={canvasRef}
