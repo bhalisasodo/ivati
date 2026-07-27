@@ -1,21 +1,34 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
+import luxuryBottle from "../../public/ivati_luxury_bottle.jpg";
+import bottleTrio from "../../public/ivati_bottle_trio.jpg";
 
 interface ProductsProps {
   onOpenOrderModal: (productName?: string) => void;
 }
 
+interface ProductItem {
+  id: string;
+  name: string;
+  subtitle: string;
+  volume: string;
+  image: StaticImageData;
+  specs: string[];
+  price: string;
+  caseInfo: string;
+}
+
 export default function Products({ onOpenOrderModal }: ProductsProps) {
-  const collection = [
+  const collection: ProductItem[] = [
     {
       id: "500ml",
       name: "500ml Still Water",
       subtitle: "Personal Hydration Carafe",
       volume: "500ml",
-      image: "/ivati_luxury_bottle.jpg",
+      image: luxuryBottle,
       specs: ["Ultra-Filtered RO Water", "pH 7.4 Neutral", "Recyclable Glass/PET"],
       price: "R8.00 / bottle",
       caseInfo: "Case of 24 — R180",
@@ -25,7 +38,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
       name: "1.5L Still Reserve",
       subtitle: "All-Day Pure Hydration",
       volume: "1500ml",
-      image: "/ivati_bottle_trio.jpg",
+      image: bottleTrio,
       specs: ["Extra Hydration Volume", "Zero Sodium", "Ergonomic Sculpted Bottle"],
       price: "R18.00 / bottle",
       caseInfo: "Pack of 12 — R200",
@@ -35,7 +48,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
       name: "5L Home & Office Jug",
       subtitle: "Architectural Dispenser",
       volume: "5000ml",
-      image: "/ivati_luxury_bottle.jpg",
+      image: luxuryBottle,
       specs: ["Maximum Value Reserve", "Easy Pour Spout", "Kitchen & Office Stand"],
       price: "R40.00 / jug",
       caseInfo: "Refill Supply Available",
@@ -77,6 +90,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
                 src={item.image}
                 alt={item.name}
                 fill
+                priority={idx === 0}
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute top-4 right-4 px-3.5 py-1 rounded-full liquid-glass text-[11px] font-mono font-semibold text-[#071A2D] shadow-sm border border-white/90">
