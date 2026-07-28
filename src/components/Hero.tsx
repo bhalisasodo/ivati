@@ -23,20 +23,27 @@ export default function Hero({
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+
+    const updateDimensions = () => {
+      if (!canvas) return { width: 0, height: 0 };
+      const w = (canvas.width = canvas.offsetWidth || window.innerWidth);
+      const h = (canvas.height = canvas.offsetHeight || window.innerHeight);
+      return { width: w, height: h };
+    };
+
+    let { width, height } = updateDimensions();
 
     const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const dim = updateDimensions();
+      width = dim.width;
+      height = dim.height;
     };
     window.addEventListener("resize", handleResize);
 
     // Refractive liquid light orbs
     const drops = Array.from({ length: 18 }).map(() => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
+      x: Math.random() * (width || 800),
+      y: Math.random() * (height || 600),
       radius: Math.random() * 140 + 80,
       alpha: Math.random() * 0.18 + 0.05,
       vx: (Math.random() - 0.5) * 0.4,
@@ -44,6 +51,7 @@ export default function Hero({
     }));
 
     const render = () => {
+      if (!ctx || width === 0 || height === 0) return;
       ctx.clearRect(0, 0, width, height);
 
       drops.forEach((d) => {
@@ -78,7 +86,10 @@ export default function Hero({
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-24 px-6 lg:px-12 bg-white overflow-hidden select-none">
+    <section
+      id="hero"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center pt-36 pb-20 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden select-none"
+    >
       {/* Hero Background Image with Atmospheric Gradient Masking */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
@@ -87,11 +98,12 @@ export default function Hero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-40 sm:opacity-50 scale-105 transition-transform duration-1000 ease-out"
+          className="object-cover object-center opacity-30 sm:opacity-40 scale-105 transition-transform duration-1000 ease-out"
         />
         {/* Subtle radial & linear gradient overlays for seamless text contrast and smooth blend into content */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/50 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/40 to-white" />
       </div>
+
       {/* Background Interactive Liquid Glass Caustics Canvas */}
       <canvas
         ref={canvasRef}
@@ -102,7 +114,8 @@ export default function Hero({
       <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#3CB9FF]/20 rounded-full blur-[120px] animate-liquid-blob pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#0077FF]/15 rounded-full blur-[100px] animate-liquid-blob pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-10">
+      {/* Hero Content Container */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8 flex flex-col items-center">
         
         {/* Liquid Glass Badge */}
         <motion.div
@@ -120,7 +133,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-4"
+          className="space-y-4 max-w-4xl"
         >
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-[#071A2D] tracking-[-0.03em] leading-[1.04] text-balance">
             Pure Water. <br />
@@ -140,12 +153,12 @@ export default function Hero({
           An understated expression of purity, community, and modern South African craftsmanship. Ultra-pure water encapsulated in liquid glass aesthetic.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Action CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 w-full sm:w-auto"
         >
           <button
             onClick={onOpenOrderModal}
@@ -162,12 +175,51 @@ export default function Hero({
           </button>
         </motion.div>
 
+        {/* Hero Product Bottle Showcase Display */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-8 w-full max-w-md sm:max-w-lg mx-auto"
+        >
+          <div className="relative rounded-3xl p-3 sm:p-4 liquid-glass border border-white/90 shadow-[0_20px_50px_rgba(7,26,45,0.12)] group hover:shadow-[0_25px_60px_rgba(0,119,255,0.18)] transition-all duration-700">
+            {/* Glow backing */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#3CB9FF]/20 via-[#0077FF]/20 to-[#3CB9FF]/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            <div className="relative overflow-hidden rounded-2xl bg-slate-50/50 aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
+              <Image
+                src="/ivati_luxury_bottle.jpg"
+                alt="IVATI Luxury Pure Water Bottle"
+                width={800}
+                height={500}
+                priority
+                className="object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              
+              {/* Product Badge Overlay */}
+              <div className="absolute bottom-3 left-3 right-3 px-4 py-2.5 rounded-xl liquid-glass border border-white/80 flex items-center justify-between text-left">
+                <div>
+                  <span className="block text-[10px] font-mono tracking-widest text-[#0077FF] uppercase font-bold">
+                    PREMIUM BOTTLING
+                  </span>
+                  <span className="block text-xs font-semibold text-[#071A2D]">
+                    IVATI Ultra-Pure Mineral Water
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-[#071A2D] text-white">
+                  500ml & 750ml
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="pt-12 flex flex-col items-center gap-2"
+          className="pt-8 flex flex-col items-center gap-2"
         >
           <span className="text-[10px] font-mono tracking-[0.25em] text-[#64748B] uppercase">
             SCROLL TO EXPLORE
@@ -179,3 +231,4 @@ export default function Hero({
     </section>
   );
 }
+
