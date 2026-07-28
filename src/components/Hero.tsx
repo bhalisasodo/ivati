@@ -98,10 +98,10 @@ export default function Hero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-30 sm:opacity-40 scale-105 transition-transform duration-1000 ease-out"
+          className="object-cover object-center opacity-85 scale-105 transition-transform duration-1000 ease-out"
         />
-        {/* Subtle radial & linear gradient overlays for seamless text contrast and smooth blend into content */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/40 to-white" />
+        {/* Balanced gradient overlay ensuring clear background visibility with high contrast text */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/20 to-white/90" />
       </div>
 
       {/* Background Interactive Liquid Glass Caustics Canvas */}

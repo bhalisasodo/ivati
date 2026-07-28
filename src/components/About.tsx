@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -28,6 +29,28 @@ export default function About() {
           </h2>
 
           <div className="w-12 h-0.5 bg-[#0077FF]" />
+
+          {/* Spring Source Visual Card */}
+          <div className="relative rounded-3xl p-3 liquid-glass border border-white/90 shadow-lg group overflow-hidden mt-8">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src="/images/spring-source.jpg"
+                alt="Pristine South African Water Source"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#071A2D]/60 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-mono">
+                <span className="text-[#3CB9FF] font-bold block text-[10px] uppercase tracking-wider">
+                  ORIGIN SOURCE
+                </span>
+                <span className="font-semibold text-white/90 text-[11px]">
+                  Pristine South African Aquifer
+                </span>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Right Column — Editorial Prose & Brand Etymology */}

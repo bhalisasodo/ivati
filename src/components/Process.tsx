@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Process() {
@@ -112,6 +113,38 @@ export default function Process() {
           </motion.div>
         ))}
       </div>
+
+      {/* Visual Lifestyle Process Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="mt-16 relative rounded-3xl overflow-hidden liquid-glass border border-white/90 p-4 shadow-xl"
+      >
+        <div className="relative aspect-[21/9] sm:aspect-[24/8] w-full rounded-2xl overflow-hidden bg-slate-900">
+          <Image
+            src="/images/lifestyle.jpg"
+            alt="IVATI Pure Water Lifestyle Experience"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-85 hover:scale-105 transition-transform duration-1000 ease-out"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071A2D]/80 via-[#071A2D]/40 to-transparent" />
+          
+          <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-center max-w-xl text-white space-y-3">
+            <span className="text-[11px] font-mono text-[#3CB9FF] uppercase tracking-[0.2em] font-bold">
+              MODERN HYDRATION LIFESTYLE
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              Crafted for everyday elevation.
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-200 font-normal leading-relaxed">
+              Every drop of IVATI represents pure quality, refreshment, and authentic South African pride.
+            </p>
+          </div>
+        </div>
+      </motion.div>
 
     </section>
   );

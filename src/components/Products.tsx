@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import luxuryBottle from "../../public/ivati_luxury_bottle.jpg";
-import bottleTrio from "../../public/ivati_bottle_trio.jpg";
 
 interface ProductsProps {
   onOpenOrderModal: (productName?: string) => void;
@@ -15,7 +13,7 @@ interface ProductItem {
   name: string;
   subtitle: string;
   volume: string;
-  image: StaticImageData;
+  image: string;
   specs: string[];
   price: string;
   caseInfo: string;
@@ -28,7 +26,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
       name: "500ml Still Water",
       subtitle: "Personal Hydration Carafe",
       volume: "500ml",
-      image: luxuryBottle,
+      image: "/ivati_luxury_bottle.jpg",
       specs: ["Ultra-Filtered RO Water", "pH 7.4 Neutral", "Recyclable Glass/PET"],
       price: "R8.00 / bottle",
       caseInfo: "Case of 24 — R180",
@@ -38,7 +36,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
       name: "1.5L Still Reserve",
       subtitle: "All-Day Pure Hydration",
       volume: "1500ml",
-      image: bottleTrio,
+      image: "/ivati_bottle_trio.jpg",
       specs: ["Extra Hydration Volume", "Zero Sodium", "Ergonomic Sculpted Bottle"],
       price: "R18.00 / bottle",
       caseInfo: "Pack of 12 — R200",
@@ -48,7 +46,7 @@ export default function Products({ onOpenOrderModal }: ProductsProps) {
       name: "5L Home & Office Jug",
       subtitle: "Architectural Dispenser",
       volume: "5000ml",
-      image: luxuryBottle,
+      image: "/images/bottle-glass.jpg",
       specs: ["Maximum Value Reserve", "Easy Pour Spout", "Kitchen & Office Stand"],
       price: "R40.00 / jug",
       caseInfo: "Refill Supply Available",
