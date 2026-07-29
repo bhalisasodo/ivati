@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import springSource from "../../public/images/spring-source.jpg";
 
 export default function About() {
   return (
@@ -34,7 +35,7 @@ export default function About() {
           <div className="relative rounded-3xl p-3 liquid-glass border border-white/90 shadow-lg group overflow-hidden mt-8">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
               <Image
-                src="/images/spring-source.jpg"
+                src={springSource}
                 alt="Pristine South African Water Source"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

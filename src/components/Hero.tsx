@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import heroBg from "../../public/images/hero-bg.jpg";
+import luxuryBottle from "../../public/ivati_luxury_bottle.jpg";
 
 interface HeroProps {
   onOpenOrderModal: () => void;
@@ -93,7 +95,7 @@ export default function Hero({
       {/* Hero Background Image with Atmospheric Gradient Masking */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/images/hero-bg.jpg"
+          src={heroBg}
           alt="IVATI Pure Water Background"
           fill
           priority
@@ -188,7 +190,7 @@ export default function Hero({
 
             <div className="relative overflow-hidden rounded-2xl bg-slate-50/50 aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center">
               <Image
-                src="/ivati_luxury_bottle.jpg"
+                src={luxuryBottle}
                 alt="IVATI Luxury Pure Water Bottle"
                 width={800}
                 height={500}

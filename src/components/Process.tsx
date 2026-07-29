@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import lifestyle from "../../public/images/lifestyle.jpg";
 
 export default function Process() {
   const steps = [
@@ -124,7 +125,7 @@ export default function Process() {
       >
         <div className="relative aspect-[21/9] sm:aspect-[24/8] w-full rounded-2xl overflow-hidden bg-slate-900">
           <Image
-            src="/images/lifestyle.jpg"
+            src={lifestyle}
             alt="IVATI Pure Water Lifestyle Experience"
             fill
             sizes="100vw"
